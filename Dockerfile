@@ -1,8 +1,12 @@
-# Use a minimal base image. Alpine is often a good choice for size.
-FROM alpine:3.18
+# Use Debian stable slim as the base image. It includes glibc.
+FROM debian:stable-slim
 
-# Install necessary packages: wget and tar
-RUN apk add --no-cache wget tar bash glibc glibc-compat
+# Install necessary packages: wget, tar, and bash (for the start script)
+# No need for glibc or glibc-compat here, as Debian comes with glibc.
+# `apt-get clean` reduces image size by removing downloaded package lists.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends wget tar bash \
+    && rm -rf /var/lib/apt/lists/*
 
 # Define TeamSpeak version and filename as build arguments (optional, but good practice)
 ARG TS_VERSION="3.13.7"
@@ -11,7 +15,9 @@ ENV TS_DOWNLOAD_URL="https://files.teamspeak-services.com/releases/server/${TS_V
 ENV TS_DIR_NAME="teamspeak3-server_linux_amd64"
 
 # Create a non-root user for security best practice
-RUN adduser -D teamspeak
+# -m creates the home directory
+# -s /bin/bash gives it a shell
+RUN useradd -m -s /bin/bash teamspeak
 
 # Set the working directory
 WORKDIR /home/teamspeak

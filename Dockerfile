@@ -14,9 +14,6 @@ ENV TS_FILENAME="teamspeak3-server_linux_amd64-${TS_VERSION}.tar.bz2"
 ENV TS_DOWNLOAD_URL="https://files.teamspeak-services.com/releases/server/${TS_VERSION}/${TS_FILENAME}"
 ENV TS_DIR_NAME="teamspeak3-server_linux_amd64"
 
-https://files.teamspeak-services.com/releases/server/3.13.7/teamspeak3-server_linux_amd64-3.13.7.tar.bz2
-https://files.teamspeak-services.com/releases/server/3.13.7/teamspeak3-server_linux_amd64-3.13.7.tar.bz2
-
 # Create a non-root user for security best practice
 # -m creates the home directory
 # -s /bin/bash gives it a shell

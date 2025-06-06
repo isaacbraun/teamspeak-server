@@ -2,7 +2,7 @@
 FROM alpine:3.18
 
 # Install necessary packages: wget and tar
-RUN apk add --no-cache wget tar bash
+RUN apk add --no-cache wget tar bash glibc glibc-compat
 
 # Define TeamSpeak version and filename as build arguments (optional, but good practice)
 ARG TS_VERSION="3.13.7"

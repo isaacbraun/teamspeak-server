@@ -5,7 +5,7 @@ FROM debian:stable-slim
 # No need for glibc or glibc-compat here, as Debian comes with glibc.
 # `apt-get clean` reduces image size by removing downloaded package lists.
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends wget tar bash ca-certificates \
+    && apt-get install -y --no-install-recommends wget tar bash ca-certificates bzip2 \
     && rm -rf /var/lib/apt/lists/*
 
 # Define TeamSpeak version and filename as build arguments (optional, but good practice)

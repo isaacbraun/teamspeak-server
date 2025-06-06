@@ -5,7 +5,7 @@ FROM debian:stable-slim
 # No need for glibc or glibc-compat here, as Debian comes with glibc.
 # `apt-get clean` reduces image size by removing downloaded package lists.
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends wget tar bash \
+    && apt-get install -y --no-install-recommends wget tar bash ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Define TeamSpeak version and filename as build arguments (optional, but good practice)
@@ -13,6 +13,9 @@ ARG TS_VERSION="3.13.7"
 ENV TS_FILENAME="teamspeak3-server_linux_amd64-${TS_VERSION}.tar.bz2"
 ENV TS_DOWNLOAD_URL="https://files.teamspeak-services.com/releases/server/${TS_VERSION}/${TS_FILENAME}"
 ENV TS_DIR_NAME="teamspeak3-server_linux_amd64"
+
+https://files.teamspeak-services.com/releases/server/3.13.7/teamspeak3-server_linux_amd64-3.13.7.tar.bz2
+https://files.teamspeak-services.com/releases/server/3.13.7/teamspeak3-server_linux_amd64-3.13.7.tar.bz2
 
 # Create a non-root user for security best practice
 # -m creates the home directory
